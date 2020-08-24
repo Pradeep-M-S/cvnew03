@@ -4,12 +4,29 @@ import Header from "../Header/header.component";
 import Image from "../../assets/images/Picture4.png";
 
 const HeroWrapper = styled.div`
-  background: linear-gradient(to right bottom, #6336e0, #4e1dbb);
-  clip-path: polygon(100% 0, 100% 68%, 33% 100%, 0 100%, 0 0);
   height: 98vh;
   z-index: 0;
   width: 100%;
+
   position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+  }
+
+  &::before {
+    top: 0;
+    height: 100%;
+    background-size: cover;
+    background-position: top;
+    background: linear-gradient(to right bottom, #6336e0, #4e1dbb);
+    clip-path: polygon(100% 0, 100% 68%, 33% 100%, 0 100%, 0 0);
+    z-index: -1;
+  }
 `;
 
 const HeroSection = styled.div`
@@ -36,12 +53,8 @@ const HeroHeading = styled.div`
   }
   p {
     font-size: 1.5em;
-    font-weight: 600;
-    line-height: 40px;
-  }
-  span {
-    color: black;
-    padding: 2px;
+    font-weight: 300;
+    line-height: 35px;
   }
 
   @media screen and (max-width: 980px) {
@@ -65,10 +78,28 @@ const HeroImage = styled.div`
   width: 80%;
   margin: 0 auto;
   padding-bottom: 50px;
-  z-index: 200;
+  z-index: 2;
   cursor: pointer;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0.08, 0.9, 0.36, 1);
+  /* animation-timing-function: cubic-bezier(.65,0,.32,1.55); */
+  animation-fill-mode: both;
+  animation-name: bounceIn;
   h2 {
     font-size: 2em;
+  }
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  @media screen and (max-width: 980px) {
+    width: 65%;
   }
 `;
 
